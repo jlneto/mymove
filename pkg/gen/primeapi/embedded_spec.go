@@ -270,19 +270,8 @@ func init() {
             "schema": {
               "type": "object",
               "properties": {
-                "ppm-is-included": {
-                  "type": "boolean"
-                },
-                "scheduled-move-date": {
-                  "type": "string",
-                  "format": "date",
-                  "example": "2018-04-26"
-                },
-                "secondary-delivery-address": {
-                  "$ref": "#/definitions/Address"
-                },
-                "secondary-pickup-address": {
-                  "$ref": "#/definitions/Address"
+                "ppm": {
+                  "$ref": "#/definitions/PrimePPM"
                 }
               }
             }
@@ -330,7 +319,7 @@ func init() {
       "parameters": [
         {
           "type": "string",
-          "description": "ID of move order to use",
+          "description": "ID of move task order to use",
           "name": "moveTaskOrderID",
           "in": "path",
           "required": true
@@ -985,6 +974,16 @@ func init() {
             "$ref": "#/definitions/PaymentRequest"
           }
         },
+        "ppm_estimated_weight": {
+          "type": "integer"
+        },
+        "ppm_type": {
+          "type": "string",
+          "enum": [
+            "FULL",
+            "PARTIAL"
+          ]
+        },
         "referenceId": {
           "type": "string",
           "example": "1001-3456"
@@ -1047,6 +1046,21 @@ func init() {
       "type": "array",
       "items": {
         "$ref": "#/definitions/PaymentRequest"
+      }
+    },
+    "PrimePPM": {
+      "type": "object",
+      "properties": {
+        "estimatedWeight": {
+          "type": "integer"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "FULL",
+            "PARTIAL"
+          ]
+        }
       }
     },
     "ProofOfServiceDocs": {
@@ -1471,19 +1485,8 @@ func init() {
             "schema": {
               "type": "object",
               "properties": {
-                "ppm-is-included": {
-                  "type": "boolean"
-                },
-                "scheduled-move-date": {
-                  "type": "string",
-                  "format": "date",
-                  "example": "2018-04-26"
-                },
-                "secondary-delivery-address": {
-                  "$ref": "#/definitions/Address"
-                },
-                "secondary-pickup-address": {
-                  "$ref": "#/definitions/Address"
+                "ppm": {
+                  "$ref": "#/definitions/PrimePPM"
                 }
               }
             }
@@ -1543,7 +1546,7 @@ func init() {
       "parameters": [
         {
           "type": "string",
-          "description": "ID of move order to use",
+          "description": "ID of move task order to use",
           "name": "moveTaskOrderID",
           "in": "path",
           "required": true
@@ -2228,6 +2231,16 @@ func init() {
             "$ref": "#/definitions/PaymentRequest"
           }
         },
+        "ppm_estimated_weight": {
+          "type": "integer"
+        },
+        "ppm_type": {
+          "type": "string",
+          "enum": [
+            "FULL",
+            "PARTIAL"
+          ]
+        },
         "referenceId": {
           "type": "string",
           "example": "1001-3456"
@@ -2290,6 +2303,21 @@ func init() {
       "type": "array",
       "items": {
         "$ref": "#/definitions/PaymentRequest"
+      }
+    },
+    "PrimePPM": {
+      "type": "object",
+      "properties": {
+        "estimatedWeight": {
+          "type": "integer"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "FULL",
+            "PARTIAL"
+          ]
+        }
       }
     },
     "ProofOfServiceDocs": {
