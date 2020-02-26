@@ -261,7 +261,7 @@ func init() {
           "prime"
         ],
         "summary": "Updates move task order's post counseling information",
-        "operationId": "updateMoveTaskOrderPostCounselingInformation",
+        "operationId": "updateMTOPostCounselingInformation",
         "parameters": [
           {
             "name": "body",
@@ -270,11 +270,24 @@ func init() {
             "schema": {
               "type": "object",
               "properties": {
-                "ppm": {
-                  "$ref": "#/definitions/PrimePPM"
+                "ppm_estimated_weight": {
+                  "type": "integer"
+                },
+                "ppm_type": {
+                  "type": "string",
+                  "enum": [
+                    "FULL",
+                    "PARTIAL"
+                  ]
                 }
               }
             }
+          },
+          {
+            "type": "string",
+            "name": "If-Match",
+            "in": "header",
+            "required": true
           }
         ],
         "responses": {
@@ -300,6 +313,12 @@ func init() {
             "description": "The requested resource wasn't found",
             "schema": {
               "$ref": "#/responses/NotFound"
+            }
+          },
+          "412": {
+            "description": "precondition failed",
+            "schema": {
+              "$ref": "#/responses/PreconditionFailed"
             }
           },
           "422": {
@@ -1046,21 +1065,6 @@ func init() {
       "type": "array",
       "items": {
         "$ref": "#/definitions/PaymentRequest"
-      }
-    },
-    "PrimePPM": {
-      "type": "object",
-      "properties": {
-        "estimatedWeight": {
-          "type": "integer"
-        },
-        "type": {
-          "type": "string",
-          "enum": [
-            "FULL",
-            "PARTIAL"
-          ]
-        }
       }
     },
     "ProofOfServiceDocs": {
@@ -1476,7 +1480,7 @@ func init() {
           "prime"
         ],
         "summary": "Updates move task order's post counseling information",
-        "operationId": "updateMoveTaskOrderPostCounselingInformation",
+        "operationId": "updateMTOPostCounselingInformation",
         "parameters": [
           {
             "name": "body",
@@ -1485,11 +1489,24 @@ func init() {
             "schema": {
               "type": "object",
               "properties": {
-                "ppm": {
-                  "$ref": "#/definitions/PrimePPM"
+                "ppm_estimated_weight": {
+                  "type": "integer"
+                },
+                "ppm_type": {
+                  "type": "string",
+                  "enum": [
+                    "FULL",
+                    "PARTIAL"
+                  ]
                 }
               }
             }
+          },
+          {
+            "type": "string",
+            "name": "If-Match",
+            "in": "header",
+            "required": true
           }
         ],
         "responses": {
@@ -1521,6 +1538,15 @@ func init() {
             "description": "The requested resource wasn't found",
             "schema": {
               "description": "The requested resource wasn't found",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          },
+          "412": {
+            "description": "precondition failed",
+            "schema": {
+              "description": "Precondition failed",
               "schema": {
                 "$ref": "#/definitions/Error"
               }
@@ -2303,21 +2329,6 @@ func init() {
       "type": "array",
       "items": {
         "$ref": "#/definitions/PaymentRequest"
-      }
-    },
-    "PrimePPM": {
-      "type": "object",
-      "properties": {
-        "estimatedWeight": {
-          "type": "integer"
-        },
-        "type": {
-          "type": "string",
-          "enum": [
-            "FULL",
-            "PARTIAL"
-          ]
-        }
       }
     },
     "ProofOfServiceDocs": {
