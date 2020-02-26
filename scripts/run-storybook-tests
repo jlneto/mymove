@@ -1,0 +1,30 @@
+#! /usr/bin/env bash
+
+set -eu -o pipefail
+
+retries=0
+timeout="${STORYBOOK_SERVER_TIMEOUT:-20}"
+
+# start storybook in the background
+yarn run storybook --ci &
+pid=$!
+
+# wait for the storybook server to start
+while [[ "$(curl -s -o /dev/null -w '%{http_code}' http://localhost:6006)" != 200 ]]; do
+  retries=$(( retries + 1 ))
+  echo -n "."
+  if [[ $retries -eq $timeout ]]; then
+    echo "failed!"
+    exit 1
+  fi
+  sleep 1
+done
+
+echo "Running loki tests"
+yarn run loki test
+
+# tell the server to shut down
+kill $pid
+
+# wait for it to shut down
+wait $pid

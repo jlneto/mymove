@@ -84,6 +84,7 @@ These scripts are primarily used for CircleCI workflows.
 | `ecs-run-app-migrations-container` | Creates and runs a migration task using the given container definition. |
 | `rds-snapshot-app-db` | Creates a snapshot of the app database for the given environment. |
 | `push-storybook-assets` | Pushes static build of Story Book to AWS S3 for hosting. |
+| `run-storybook-tests` | Starts storybook in the background and runs the Loki storybook tests. |
 
 ## Development Scripts
 
