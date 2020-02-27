@@ -34,6 +34,7 @@ func MoveTaskOrder(moveTaskOrder *models.MoveTaskOrder) *primemessages.MoveTaskO
 	return payload
 }
 
+// MoveTaskOrderWithETag payload used for optimistic locking
 func MoveTaskOrderWithEtag(moveTaskOrder *models.MoveTaskOrder) *primemessages.MoveTaskOrderWithEtag {
 	if moveTaskOrder == nil {
 		return nil

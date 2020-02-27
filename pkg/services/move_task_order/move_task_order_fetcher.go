@@ -169,6 +169,7 @@ func (f moveTaskOrderFetcher) MakeAvailableToPrime(moveTaskOrderID uuid.UUID) (*
 	return mto, nil
 }
 
+// UpdateMoveTaskOrderQueryBuilder is the query builder for updating MTO
 type UpdateMoveTaskOrderQueryBuilder interface {
 	FetchOne(model interface{}, filters []services.QueryFilter) error
 	UpdateOne(model interface{}, eTag *string) (*validate.Errors, error)
@@ -190,7 +191,7 @@ func (o *moveTaskOrderUpdater) UpdatePostCounselingInfo(moveTaskOrderID uuid.UUI
 	moveTaskOrder.PPMType = body.PpmType
 	moveTaskOrder.PPMEstimatedWeight = unit.Pound(body.PpmEstimatedWeight)
 
-	verrs, err := o.builder.UpdateOne(&moveTaskOrder, &eTag)
+	verrs, _ := o.builder.UpdateOne(&moveTaskOrder, &eTag)
 
 	if verrs != nil && verrs.HasAny() {
 		return nil, ValidationError{
