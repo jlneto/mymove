@@ -167,7 +167,7 @@ func (h SubmitMoveHandler) Handle(params moveop.SubmitMoveForApprovalParams) mid
 
 	if h.HandlerContext.GetFeatureFlag(cli.FeatureFlagConvertPPMsToGHC) {
 		if moID, convertErr := models.ConvertFromPPMToGHC(h.DB(), move.ID); convertErr != nil {
-			logger.Error("PPM->GHC conversion error", zap.Error(err))
+			logger.Error("PPM->GHC conversion error", zap.Error(convertErr))
 			// don't return an error here because we don't want this to break the endpoint
 		} else {
 			logger.Info("PPM->GHC conversion successful. New MoveOrder created.", zap.String("move_order_id", moID.String()))
