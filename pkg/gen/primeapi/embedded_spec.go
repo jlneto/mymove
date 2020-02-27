@@ -294,7 +294,7 @@ func init() {
           "200": {
             "description": "Successfully updated move task order post counseling information",
             "schema": {
-              "$ref": "#/definitions/MoveTaskOrder"
+              "$ref": "#/definitions/MoveTaskOrderWithEtag"
             }
           },
           "401": {
@@ -1013,6 +1013,21 @@ func init() {
         }
       }
     },
+    "MoveTaskOrderWithEtag": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/MoveTaskOrder"
+        },
+        {
+          "type": "object"
+        }
+      ],
+      "properties": {
+        "eTag": {
+          "type": "string"
+        }
+      }
+    },
     "MoveTaskOrders": {
       "type": "array",
       "items": {
@@ -1513,7 +1528,7 @@ func init() {
           "200": {
             "description": "Successfully updated move task order post counseling information",
             "schema": {
-              "$ref": "#/definitions/MoveTaskOrder"
+              "$ref": "#/definitions/MoveTaskOrderWithEtag"
             }
           },
           "401": {
@@ -2274,6 +2289,21 @@ func init() {
         "updatedAt": {
           "type": "string",
           "format": "date"
+        }
+      }
+    },
+    "MoveTaskOrderWithEtag": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/MoveTaskOrder"
+        },
+        {
+          "type": "object"
+        }
+      ],
+      "properties": {
+        "eTag": {
+          "type": "string"
         }
       }
     },
