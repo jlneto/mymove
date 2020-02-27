@@ -1,5 +1,17 @@
 @import '../../shared/styles/basics';
 
+@mixin tab-nav-tab-underline {
+  content: '';
+  @include u-bg('blue-warm-60v');
+  @include u-radius('0');
+  @include u-display('block');
+  @include u-position('absolute');
+  @include u-height('05');
+  @include u-left('2');
+  @include u-right('2');
+  @include u-bottom(0);
+}
+
 .tab-nav {
   .tab-list-container {
     @include u-margin('0');
@@ -30,16 +42,8 @@
 
       a:hover {
         .tab-title::after {
-          content: '';
           @include u-text('blue-warm-60v');
-          @include u-bg('blue-warm-60v');
-          @include u-radius('0');
-          @include u-display('block');
-          @include u-position('absolute');
-          @include u-height('05');
-          @include u-left('2');
-          @include u-right('2');
-          @include u-bottom(0);
+          @include tab-nav-tab-underline;
         }
       }
 
@@ -54,15 +58,7 @@
       a {
         @include u-text('gray-cool-70', 'bold');
         .tab-title::after {
-          content: '';
-          @include u-bg('blue-warm-60v');
-          @include u-radius('0');
-          @include u-display('block');
-          @include u-position('absolute');
-          @include u-height('05');
-          @include u-left('2');
-          @include u-right('2');
-          @include u-bottom(0);
+          @include tab-nav-tab-underline;
         }
       }
 

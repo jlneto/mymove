@@ -30,24 +30,43 @@ describe('TabNav', () => {
         <TabPanel>Body Of Tab 3</TabPanel>
       </TabNav>,
     );
+    // first tab
     expect(
       wrapper
         .find('.tab-title')
         .first()
         .text(),
     ).toBe('Option 1');
+    expect(
+      wrapper
+        .find('a')
+        .first()
+        .prop('href'),
+    ).toBe('/opt1');
+
+    // second tab
     expect(wrapper.find(Tag).length).toBe(1);
+    expect(wrapper.find('a.tab-with-notice').length).toBe(1);
+    expect(wrapper.find('a.tab-with-notice').prop('href')).toBe('/opt2');
     expect(
       wrapper
         .find(Tag)
         .children()
         .text(),
     ).toBe('2');
+
+    // third tab
     expect(
       wrapper
         .find('.tab-title')
         .last()
         .text(),
     ).toBe('Option 3');
+    expect(
+      wrapper
+        .find('a')
+        .last()
+        .prop('href'),
+    ).toBe('/opt3');
   });
 });
