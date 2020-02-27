@@ -13,8 +13,8 @@ func MakeMoveTaskOrder(db *pop.Connection, assertions Assertions) models.MoveTas
 		moveOrder = MakeMoveOrder(db, assertions)
 	}
 
-	var referenceID string
-	if assertions.MoveTaskOrder.ReferenceID == "" {
+	var referenceID *string
+	if assertions.MoveTaskOrder.ReferenceID == nil || *assertions.MoveTaskOrder.ReferenceID == "" {
 		referenceID, _ = models.GenerateReferenceID(db)
 	}
 

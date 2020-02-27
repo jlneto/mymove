@@ -592,6 +592,7 @@ definitions:
       referenceId:
         example: 1001-3456
         type: string
+        x-nullable: true
       isAvailableToPrime:
         type: boolean
         x-nullable: true

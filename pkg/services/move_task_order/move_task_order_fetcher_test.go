@@ -22,8 +22,9 @@ func (suite *MoveTaskOrderServiceSuite) TestMoveTaskOrderFetcher() {
 		},
 	})
 	expectedMoveOrder := testdatagen.MakeMoveOrder(suite.DB(), testdatagen.Assertions{})
+	referenceIDString := "testReferenceID"
 	expectedMTO := testdatagen.MakeMoveTaskOrder(suite.DB(), testdatagen.Assertions{
-		MoveOrder: expectedMoveOrder,
+		MoveOrder: expectedMoveOrder, MoveTaskOrder: models.MoveTaskOrder{ReferenceID: &referenceIDString},
 	})
 	mtoFetcher := NewMoveTaskOrderFetcher(suite.DB())
 
@@ -52,8 +53,9 @@ func (suite *MoveTaskOrderServiceSuite) TestMoveTaskOrderFetcher() {
 
 func (suite *MoveTaskOrderServiceSuite) TestListMoveTaskOrdersFetcher() {
 	expectedMoveOrder := testdatagen.MakeMoveOrder(suite.DB(), testdatagen.Assertions{})
+	referenceIDString := "testReferenceID"
 	expectedMTO := testdatagen.MakeMoveTaskOrder(suite.DB(), testdatagen.Assertions{
-		MoveOrder: expectedMoveOrder,
+		MoveOrder: expectedMoveOrder, MoveTaskOrder: models.MoveTaskOrder{ReferenceID: &referenceIDString},
 	})
 	mtoFetcher := NewMoveTaskOrderFetcher(suite.DB())
 

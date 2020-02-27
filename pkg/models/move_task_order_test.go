@@ -28,10 +28,10 @@ func (suite *ModelSuite) TestGenerateReferenceID() {
 	suite.NotNil(r)
 	referenceID := r
 	suite.NoError(err)
-	firstNum, _ := strconv.Atoi(strings.Split(referenceID, "-")[0])
-	secondNum, _ := strconv.Atoi(strings.Split(referenceID, "-")[1])
-	suite.Equal(reflect.TypeOf(referenceID).String(), "string")
+	firstNum, _ := strconv.Atoi(strings.Split(*referenceID, "-")[0])
+	secondNum, _ := strconv.Atoi(strings.Split(*referenceID, "-")[1])
+	suite.Equal("*string", reflect.TypeOf(referenceID).String())
 	suite.Equal(firstNum >= 0 && firstNum <= 9999, true)
 	suite.Equal(secondNum >= 0 && secondNum <= 9999, true)
-	suite.Equal(string(referenceID[4]), "-")
+	suite.Equal(string((*referenceID)[4]), "-")
 }
