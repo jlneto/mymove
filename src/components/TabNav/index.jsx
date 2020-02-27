@@ -8,15 +8,19 @@ import styles from './index.module.scss';
 const cx = classNames.bind(styles);
 
 const TabNav = ({ options, children }) => (
-  <Tabs>
-    <TabList className={cx('tab-nav')}>
-      {options.map(({ title, notice }, index) => (
-        <Tab key={index.toString()} selectedClassName={cx('tab-active')} className={cx('tab-item')}>
-          <span className={cx('tab-title')}>{title}</span>
-          {notice && <Tag>{notice}</Tag>}
-        </Tab>
-      ))}
-    </TabList>
+  <Tabs className={cx('tab-nav')}>
+    <div className={cx('tab-list-container')}>
+      <TabList className={cx('tab-list')}>
+        {options.map(({ title, url, notice }, index) => (
+          <Tab key={index.toString()} selectedClassName={cx('tab-active')}>
+            <a href={url} className={cx({ 'tab-with-notice': notice })}>
+              <span className={cx('tab-title')}>{title}</span>
+            </a>
+            {notice && <Tag>{notice}</Tag>}
+          </Tab>
+        ))}
+      </TabList>
+    </div>
     {children}
   </Tabs>
 );
@@ -25,6 +29,7 @@ TabNav.propTypes = {
   options: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string,
+      url: PropTypes.string,
       notice: PropTypes.string,
     }),
   ).isRequired,

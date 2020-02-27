@@ -9,14 +9,17 @@ describe('TabNav', () => {
     const options = [
       {
         title: 'Option 1',
+        url: '/opt1',
         notice: null,
       },
       {
         title: 'Option 2',
+        url: '/opt2',
         notice: '2',
       },
       {
         title: 'Option 3',
+        url: '/opt3',
         notice: null,
       },
     ];

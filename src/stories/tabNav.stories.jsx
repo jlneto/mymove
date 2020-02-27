@@ -13,14 +13,17 @@ storiesOf('components', module)
       options={[
         {
           title: text('Option1.title', 'Option 1', 'First Tab'),
+          url: '/?path=/story/components--tabnav#opt1',
           notice: text('Option1.notice', '2', 'First Tab'),
         },
         {
           title: text('Option2.title', 'Option 2', 'Second Tab'),
+          url: '/?path=/story/components--tabnav#opt2',
           notice: text('Option2.notice', null, 'Second Tab'),
         },
         {
           title: text('Option3.title', 'Option 3', 'Third Tab'),
+          url: '/?path=/story/components--tabnav#opt3',
           notice: text('Option3.notice', null, 'Third Tab'),
         },
       ]}

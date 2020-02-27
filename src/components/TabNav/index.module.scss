@@ -1,37 +1,86 @@
 @import '../../shared/styles/basics';
 
-.tab-title {
-  @include u-padding-bottom('05');
-  @include u-text('gray-50');
-  @include u-margin-right('05');
-}
-.tab-title:hover {
-  @include u-text('blue-warm-60v');
-  @include u-border-bottom('05', 'blue-warm-60v');
-}
-.tab-active .tab-title {
-  @include u-text('gray-cool-70', 'bold');
-  @include u-border-bottom('05', 'blue-warm-60v');
-}
-.tab-active .tab-title:hover {
-  @include u-text('gray-cool-70', 'bold');
-}
-.tab-item {
-  @include u-padding('2');
-  @include u-display('inline-block');
-}
-.tab-item:focus {
-  @include u-outline('05', 'blue-40v');
-  @include u-padding-top('05');
-  @include u-padding-bottom('05');
-}
-.tab-item :global .usa-tag {
-  @include u-text('gray-cool-70');
-  @include u-bg('gold-20v');
-}
 .tab-nav {
-  @include u-height('6');
-  @include u-padding('0');
-  @include u-margin('0');
-  @include u-border('1px', 'gray-cool-10');
+  .tab-list-container {
+    @include u-margin('0');
+    @include u-padding-left('2');
+    @include clearfix;
+    @include u-border-bottom('2px', 'gray-cool-10');
+  }
+
+  .tab-list {
+    @include add-list-reset;
+    @include u-padding-left('0');
+
+    li {
+      @include u-display('inline');
+
+      a {
+        @include u-text('gray-50', 'no-underline');
+        @include u-display('inline-block');
+        @include u-height('6');
+        @include u-padding('2');
+        @include u-line-height('sans', 1);
+        @include u-position('relative');
+      }
+
+      a.tab-with-notice {
+        @include u-padding-right('05');
+      }
+
+      a:hover {
+        .tab-title::after {
+          content: '';
+          @include u-text('blue-warm-60v');
+          @include u-bg('blue-warm-60v');
+          @include u-radius('0');
+          @include u-display('block');
+          @include u-position('absolute');
+          @include u-height('05');
+          @include u-left('2');
+          @include u-right('2');
+          @include u-bottom(0);
+        }
+      }
+
+      a.tab-with-notice {
+        .tab-title::after {
+          @include u-right('05');
+        }
+      }
+    }
+
+    li.tab-active {
+      a {
+        @include u-text('gray-cool-70', 'bold');
+        .tab-title::after {
+          content: '';
+          @include u-bg('blue-warm-60v');
+          @include u-radius('0');
+          @include u-display('block');
+          @include u-position('absolute');
+          @include u-height('05');
+          @include u-left('2');
+          @include u-right('2');
+          @include u-bottom(0);
+        }
+      }
+
+      a.tab-with-notice {
+        .tab-title::after {
+          @include u-right('05');
+        }
+      }
+    }
+
+    a:focus {
+      @include u-outline('05', 'blue-40v');
+    }
+
+    :global .usa-tag {
+      @include u-margin-right('2');
+      @include u-text('gray-cool-70');
+      @include u-bg('gold-20v');
+    }
+  }
 }
